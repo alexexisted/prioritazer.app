@@ -19,7 +19,7 @@ struct TasksView: View {
 
     @FetchRequest(
         entity: TaskItem.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \TaskItem.taskId, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \TaskItem.priority, ascending: false)],
         animation: .default)
     private var taskItems: FetchedResults<TaskItem>
 
@@ -27,7 +27,7 @@ struct TasksView: View {
         NavigationStack {
     
             List {
-                ForEach(taskItems) { task in // Temporary static data
+                ForEach(taskItems) { task in 
                     TaskRow(task: task)
                 }
                 .onDelete(perform: deleteItems)
